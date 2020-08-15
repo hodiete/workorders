@@ -1,22 +1,104 @@
-.App {
-  text-align: center;
+.workorder__container {
+ display: flex;
+ flex-wrap: wrap;
 }
 
-.App-logo {
-  height: 40vmin;
+.container {
+ max-width: 1360px;
+ margin: 0 auto;
+ padding: 0 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card {
+ flex: 1;
+ margin: 1rem 0.5rem 0.5rem 0;
+ background-color: #eeeeee;
 }
 
-.App-link {
-  color: #09d3ac;
+.workorder__description {
+ padding: 0.25rem 1rem;
+}
+.workorder__name {
+ padding-bottom: 10px;
+ border-bottom: 1px solid #000;
+ text-align: center;
+}
+.workprofile {
+ display: flex;
+ flex-wrap: no-wrap;
+ align-items: flex-end;
+ padding: 0.25rem 1rem;
+ margin-bottom: 2rem;
+}
+.profile__name {
+ font-weight: bold;
+}
+.profile__information {
+ margin-left: 50px;
+}
+.profile__email {
+ font-style: italic;
+ color: #333333;
+}
+
+.profile__image {
+ max-width: 200px;
+ border-radius: 50%;
+}
+
+.workorder__dates {
+ text-align: right;
+ margin-bottom: 15px;
+ padding-right: 10px;
+}
+
+.input__search {
+ width: 100%;
+ padding: 10px 20px;
+ margin-top: 10px;
+ margin-bottom: 25px;
+ border: 1px solid black;
+ color: #000;
+ font-size: 1rem;
+}
+.toggle-switch {
+ display: inline-block;
+}
+
+.toggle-switch input[type="checkbox"] {
+ display: none;
+}
+
+.toggle-switch label {
+ cursor: pointer;
+}
+
+.toggle-switch label .toggle-track {
+ display: inline-block;
+ height: 40px;
+ width: 200px;
+ background: #eee;
+ border-radius: 20px;
+ position: relative;
+ border: 1px solid #ccc;
+}
+
+.toggle-switch .toggle-track:before {
+ content: "";
+ display: inline-block;
+ height: 40px;
+ width: 40px;
+ padding-left: 40%;
+ background: #2a2a2a;
+ border-radius: 20px;
+ position: absolute;
+ top: 0;
+ right: 0;
+ transition: right 0.2s ease-in;
+}
+
+.toggle-switch input[type="checkbox"]:checked + label .toggle-track:before {
+ background: #2a2a2a;
+ left: 0px;
+ padding-left: 40%;
 }

@@ -1,0 +1,4 @@
+{
+ "workOrders": "https://www.hatchways.io/api/assessment/work_orders",
+ "workId": "https://www.hatchways.io/api/assessment/workers"
+}
