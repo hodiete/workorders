@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.css";
-import { getWorkOrders, getWorkers } from "./WorkerAPI";
-import Workers from "./Workers";
+import { getWorkOrders, getWorkers } from "./config/WorkerAPI";
+import Workers from "./components/Workers";
 class WorkerOrdersApp extends React.Component {
  state = {
   orders: [],
   workers: [],
   query: "",
   checked: false,
+  loading: true,
  };
 
  handleOrders = (orders) => {
@@ -19,6 +20,7 @@ class WorkerOrdersApp extends React.Component {
  handleWorkers = (worker) => {
   this.setState((prevState) => ({
    workers: [...prevState.workers, worker],
+   loading: false,
   }));
   return worker;
  };
@@ -61,38 +63,46 @@ class WorkerOrdersApp extends React.Component {
  }
 
  render() {
-  const { orders, workers, query } = this.state;
+  const { orders, workers, query, loading } = this.state;
   const filteredWorkers = this.filterWorkersByName(workers, query);
   return (
-   <div className="container">
-    <input
-     className="input__search"
-     type="search"
-     onChange={this.handleInputChange}
-     value={query}
-     placeholder="Filter by worker name..."
-    />
+   <React.Fragment>
+    {!loading && (
+     <div className="container">
+      <input
+       className="input__search"
+       type="search"
+       onChange={this.handleInputChange}
+       value={query}
+       placeholder="Filter by worker name..."
+      />
 
-    <div className="input__checkbox toggle-switch">
-     <span>Latest First</span>
-     <input
-      type="checkbox"
-      id="chkTest"
-      name="chkTest"
-      onClick={this.handleCheckboxChange}
-     />
-     <label htmlFor="chkTest">
-      <span className="toggle-track"></span>
-     </label>
-     <span>Earliest First</span>
-    </div>
-    <div className="workorder__container">
-     {this.sortOrders(orders).map((order, i) => {
-      const workOrders = this.getAllWorkersOrder(order, filteredWorkers);
-      return <Workers key={i} workOrders={workOrders} order={order} />;
-     })}
-    </div>
-   </div>
+      <div className="input__checkbox toggle-switch">
+       <span>Latest Order</span>
+       <input
+        type="checkbox"
+        id="chkTest"
+        name="chkTest"
+        onClick={this.handleCheckboxChange}
+       />
+       <label htmlFor="chkTest">
+        <span className="toggle-track"></span>
+       </label>
+       <span>Earliest Order</span>
+      </div>
+      <div className="workorder__container">
+       {filteredWorkers.length > 0 ? (
+        this.sortOrders(orders).map((order, i) => {
+         const workOrders = this.getAllWorkersOrder(order, filteredWorkers);
+         return <Workers key={i} workOrders={workOrders} order={order} />;
+        })
+       ) : (
+        <div className="no-results">No Work Orders Found</div>
+       )}
+      </div>
+     </div>
+    )}
+   </React.Fragment>
   );
  }
 }

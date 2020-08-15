@@ -102,3 +102,8 @@
  left: 0px;
  padding-left: 40%;
 }
+.no-results {
+ margin: 100px auto;
+ font-size: 40px;
+ padding: 20px;
+}
