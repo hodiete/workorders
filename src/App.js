@@ -47,7 +47,7 @@ class WorkerOrdersApp extends React.Component {
  filterWorkersByName = (workers, query) =>
   query === ""
    ? workers
-   : workers.filter((worker) => worker.name.toLowerCase().includes(query));
+   : workers.filter((worker) => worker.name.toLowerCase().includes(query.toLowerCase()));
 
  componentDidMount() {
   try {
